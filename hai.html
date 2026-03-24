@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>好记海鲜饭店</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+<style>
+html { scroll-behavior: smooth; }
+
+/* 玻璃效果 */
+.glass {
+background: rgba(255,255,255,0.7);
+backdrop-filter: blur(12px);
+}
+
+/* 视频背景 */
+.video-bg {
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+object-fit:cover;
+z-index:-1;
+}
+
+/* 模态框 */
+.modal {
+display:none;
+}
+.modal.show {
+display:flex;
+}
+</style>
+
+</head>
+
+<body class="bg-gray-50 text-gray-800">
+
+<!-- 导航 -->
+<header class="glass fixed w-full z-50 shadow">
+<div class="max-w-7xl mx-auto flex justify-between p-4">
+<h1 class="font-bold text-blue-600 text-xl">好记海鲜饭店</h1>
+<nav class="space-x-6 hidden md:block">
+<a href="#menu">菜单</a>
+<a href="#video">制作</a>
+<a href="#reviews">评价</a>
+<a href="#contact">联系</a>
+</nav>
+</div>
+</header>
+
+<!-- 🎬 HERO 视频 -->
+<section class="relative h-[500px] flex items-center justify-center text-white">
+
+<video autoplay muted loop class="video-bg">
+<source src="https://www.w3schools.com/howto/rain.mp4" type="video/mp4">
+</video>
+
+<div class="bg-black/50 p-8 rounded-xl text-center">
+<h2 class="text-4xl font-bold mb-4">好记海鲜饭店</h2>
+<p>新鲜现做 · Kuala Selangor 人气餐厅</p>
+</div>
+
+</section>
+
+<!-- 🍽️ 菜单 -->
+<section id="menu" class="py-16 max-w-6xl mx-auto px-6">
+
+<h2 class="text-3xl font-bold text-center mb-10" data-aos="fade-up">
+招牌美食
+</h2>
+
+<div class="grid md:grid-cols-3 gap-6">
+
+<div onclick="openModal('蒜蓉龙虾','RM120','新鲜龙虾 + 蒜香浓郁')"
+class="cursor-pointer bg-white rounded-xl shadow hover:shadow-2xl transform hover:-translate-y-2 transition"
+data-aos="zoom-in">
+
+<img class="rounded-t-xl"
+src="https://images.unsplash.com/photo-1625943553852-781c6dd46faa">
+
+<div class="p-4">
+<h3 class="font-bold">蒜蓉龙虾</h3>
+</div>
+</div>
+
+<div onclick="openModal('香辣螃蟹','RM80','招牌辣味')"
+class="cursor-pointer bg-white rounded-xl shadow hover:shadow-2xl transform hover:-translate-y-2 transition"
+data-aos="zoom-in">
+
+<img class="rounded-t-xl"
+src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092">
+
+<div class="p-4">
+<h3 class="font-bold">香辣螃蟹</h3>
+</div>
+</div>
+
+<div onclick="openModal('清蒸石斑鱼','RM90','原汁原味')"
+class="cursor-pointer bg-white rounded-xl shadow hover:shadow-2xl transform hover:-translate-y-2 transition"
+data-aos="zoom-in">
+
+<img class="rounded-t-xl"
+src="https://images.unsplash.com/photo-1617191519105-d07b98b10de6">
+
+<div class="p-4">
+<h3 class="font-bold">清蒸石斑鱼</h3>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- 🍲 弹窗 -->
+<div id="modal" class="modal fixed inset-0 bg-black/50 items-center justify-center">
+
+<div class="bg-white p-6 rounded-lg text-center max-w-sm">
+<h3 id="title" class="text-xl font-bold"></h3>
+<p id="price" class="text-blue-600"></p>
+<p id="desc"></p>
+
+<button onclick="closeModal()" class="mt-4 bg-blue-500 text-white px-4 py-2">
+关闭
+</button>
+</div>
+
+</div>
+
+<!-- 🎥 视频介绍 -->
+<section id="video" class="py-16 bg-gray-100" data-aos="fade-up">
+
+<h2 class="text-3xl text-center font-bold mb-8">
+料理制作过程
+</h2>
+
+<div class="max-w-4xl mx-auto px-6">
+
+<div class="aspect-video rounded-xl overflow-hidden shadow-lg">
+<iframe class="w-full h-full"
+src="https://www.youtube.com/embed/4aZr5hZXP_s"
+allowfullscreen>
+</iframe>
+</div>
+
+</div>
+</section>
+
+<!-- ⭐ 评论 -->
+<section id="reviews" class="max-w-4xl mx-auto p-6">
+
+<h2 class="text-2xl font-bold mb-4">顾客评价</h2>
+
+<input id="name" class="w-full p-2 border mb-2" placeholder="名字">
+<textarea id="comment" class="w-full p-2 border" placeholder="留言"></textarea>
+
+<button onclick="addComment()" class="bg-blue-500 text-white px-4 py-2 mt-2">
+提交
+</button>
+
+<div id="commentList" class="mt-4 space-y-3"></div>
+
+</section>
+
+<!-- 📍 地图 -->
+<section class="p-6">
+<iframe class="w-full h-[350px] rounded-lg"
+src="https://maps.google.com/maps?q=3.3415,101.2500&z=15&output=embed">
+</iframe>
+</section>
+
+<!-- 📞 联系 -->
+<section id="contact" class="text-center p-6">
+
+<h2 class="text-2xl font-bold">联系我们</h2>
+
+<p>📞 +60 14-932 9178</p>
+<p>📍 Kuala Selangor</p>
+
+</section>
+
+<!-- WhatsApp -->
+<a href="https://wa.me/60149329178"
+class="fixed bottom-5 right-5 bg-green-500 text-white px-5 py-3 rounded-full shadow-lg hover:scale-110 transition">
+📱 订位
+</a>
+
+<footer class="bg-gray-800 text-white text-center p-4">
+© 2026 好记海鲜饭店
+</footer>
+
+<script>
+AOS.init();
+
+/* 模态 */
+function openModal(t,p,d){
+document.getElementById("modal").classList.add("show");
+title.innerText=t;
+price.innerText=p;
+desc.innerText=d;
+}
+function closeModal(){
+document.getElementById("modal").classList.remove("show");
+}
+
+/* 评论（保存） */
+function addComment(){
+let name=document.getElementById("name").value;
+let comment=document.getElementById("comment").value;
+if(!name||!comment)return;
+
+let data=JSON.parse(localStorage.getItem("c")||"[]");
+data.unshift({name,comment});
+localStorage.setItem("c",JSON.stringify(data));
+render();
+}
+
+function render(){
+let data=JSON.parse(localStorage.getItem("c")||"[]");
+let html="";
+data.forEach(c=>{
+html+=`<div class="bg-white p-3 rounded shadow">
+<strong>${c.name}</strong><p>${c.comment}</p></div>`;
+});
+document.getElementById("commentList").innerHTML=html;
+}
+render();
+</script>
+
+</body>
+</html>
